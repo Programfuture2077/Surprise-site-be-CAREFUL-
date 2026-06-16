@@ -1,0 +1,1451 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FanPark Cahul</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0d0020;
+      --bg2: #180035;
+      --purple: #430074;
+      --purple-light: #9b30ff;
+      --card: #1e003a;
+      --card2: #2a0050;
+      --accent: #a855f7;
+      --gold: #0064d6;
+      --text: #ffffff;
+      --text-muted: #c4b5d8;
+      --border: #4a0080;
+      --btn: #7c00d4;
+      --btn-hover: #9b30ff;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ─── NAVBAR ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(10,0,30,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 40px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+
+    .nav-logo span { font-size: 1.5rem; }
+
+    .nav-links {
+      display: flex;
+      gap: 6px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.88rem;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: #fff;
+      background: var(--purple);
+    }
+
+    .nav-btn {
+      background: var(--purple);
+      color: #fff;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 20px;
+      font-size: 0.88rem;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+
+    .nav-btn:hover { background: var(--purple-light); }
+
+    /* ─── PAGE SYSTEM ─── */
+    .page { display: none; padding-top: 60px; min-height: 100vh; }
+    .page.active { display: block; }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative;
+      height: 700px;
+      background: linear-gradient(135deg, #1a0040 0%, #4a0080 50%, #0d0020 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('data:image/svg+xml,<svg xmlns="" viewBox="0 0 100 100"><circle cx="20" cy="20" r="15" fill="rgba(120,0,200,0.15)"/><circle cx="80" cy="60" r="25" fill="rgba(80,0,150,0.1)"/><circle cx="50" cy="80" r="10" fill="rgba(160,0,255,0.1)"/></svg>') no-repeat center;
+      background-size: cover;
+    }
+
+    .hero-img-placeholder {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(10,0,30,0.3), rgba(10,0,30,0.7));
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero h1 {
+      font-size: 5.5rem;
+      font-weight: 800;
+      color: #fff;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      color: var(--text-muted);
+      font-size: 2.0rem;
+      margin-bottom: 28px;
+      max-width: 800px;
+    }
+
+    /* ─── SECTION ─── */
+    section { padding: 60px 40px; max-width: 1100px; margin: 0 auto; }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .section-header h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .section-header p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* ─── FEATURES ROW (home) ─── */
+    .features-row {
+      background: var(--bg2);
+      padding: 40px;
+    }
+
+    .features-row .inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+       
+    }
+
+       .feature-card .icon a {
+     color: #ffffff; /* ← ALB */
+     text-decoration: none;
+      transition: color 0.3s;
+}
+
+     .feature-card .icon a:hover {
+       color: #a855f7; /* ← Violet la hover */
+
+
+
+       
+}
+
+    .feature-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px 24px;
+      text-align: center;
+      
+    }
+
+    .feature-card .icon {
+      font-size: 2.2rem;
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .feature-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .feature-card p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* ─── CARDS GRID ─── */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .cards-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+
+    .card {
+      background: var(--card2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(124,0,212,0.3);
+    }
+
+    .card-img {
+      width: 100%;
+      height: 160px;
+      background: linear-gradient(135deg, var(--purple) 0%, #1a0040 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-img.roller    { background: linear-gradient(135deg, #4a0080, #0d0020); }
+    .card-img.ferris    { background: linear-gradient(135deg, #0d3060, #1a0040); }
+    .card-img.carousel  { background: linear-gradient(135deg, #006030, #0d0020); }
+    .card-img.swing     { background: linear-gradient(135deg, #603000, #0d0020); }
+    .card-img.theater   { background: linear-gradient(135deg, #6a0040, #0d0020); }
+    .card-img.kidzone   { background: linear-gradient(135deg, #004060, #0d0020); }
+
+    .card-badge {
+      position: absolute;
+      top: 10px; right: 10px;
+      background: var(--gold);
+      color: #000;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 20px;
+    }
+
+    .card-body { padding: 18px; }
+    .card-body h3 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
+    .card-body p  { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 12px; }
+
+    .stars { color: var(--gold); font-size: 0.8rem; margin-bottom: 12px; }
+
+    .btn {
+      display: inline-block;
+      background: var(--btn);
+      color: #fff;
+      border: none;
+      padding: 9px 20px;
+      border-radius: 22px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+      text-decoration: none;
+    }
+
+    .btn:hover { background: var(--btn-hover); }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--accent);
+      color: var(--accent);
+    }
+    .btn-outline:hover { background: var(--accent); color: #fff; }
+    .btn-lg { padding: 13px 36px; font-size: 1rem; border-radius: 30px; }
+    .btn-gold { background: var(--gold); color: #000; }
+    .btn-gold:hover { background: #d97706; }
+
+    /* ─── CTA BANNER ─── */
+    .cta-banner {
+      background: linear-gradient(135deg, var(--purple) 0%, #3d0080 100%);
+      text-align: center;
+      padding: 60px 40px;
+    }
+
+    .cta-banner h2 { font-size: 1.8rem; margin-bottom: 12px; }
+    .cta-banner p  { color: rgba(255,255,255,0.8); margin-bottom: 28px; font-size: 0.95rem; }
+
+    /* ─── TABS ─── */
+    .tabs {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin-bottom: 36px;
+      flex-wrap: wrap;
+    }
+
+    .tab {
+      padding: 8px 22px;
+      border-radius: 22px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .tab:hover, .tab.active {
+      background: var(--purple);
+      color: #fff;
+      border-color: var(--purple);
+    }
+
+    /* ─── IMPORTANT INFO BOX ─── */
+    .info-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px;
+      margin-top: 40px;
+    }
+
+    .info-box h3 { font-size: 1.1rem; margin-bottom: 18px; }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .info-item .ico { font-size: 1.1rem; margin-top: 2px; flex-shrink: 0; }
+
+    /* ─── PRICE CARDS ─── */
+    .price-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-bottom: 50px;
+    }
+
+    .price-card {
+      background: var(--card2);
+      border: 2px solid var(--border);
+      border-radius: 18px;
+      padding: 32px 24px;
+      text-align: center;
+      position: relative;
+      transition: transform 0.2s;
+    }
+
+    .price-card:hover { transform: translateY(-4px); }
+
+    .price-card.featured {
+      border-color: var(--gold);
+      background: linear-gradient(160deg, #2a0060, #180040);
+    }
+
+    .price-badge {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--gold);
+      color: #000;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 14px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    .price-icon { font-size: 2.5rem; margin-bottom: 14px; }
+    .price-title { font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
+    .price-sub { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 16px; }
+
+    .price-amount {
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+
+    .price-amount span { font-size: 1.2rem; }
+    .price-per { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 20px; }
+
+    .price-features {
+      list-style: none;
+      text-align: left;
+      margin-bottom: 24px;
+    }
+
+    .price-features li {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      padding: 5px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .price-features li::before { content: '✓'; color: var(--accent); font-weight: 700; }
+
+    /* ─── SPECIAL OFFERS ─── */
+    .offers-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-bottom: 50px;
+    }
+
+    .offer-card {
+      background: var(--card2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .offer-icon { font-size: 2.5rem; flex-shrink: 0; }
+    .offer-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
+    .offer-card p  { font-size: 0.82rem; color: var(--text-muted); }
+
+    /* ─── SERVICES GRID ─── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-bottom: 50px;
+    }
+
+    .service-card {
+      background: var(--card2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px 18px;
+      text-align: center;
+    }
+
+    .service-card .ico { font-size: 2rem; margin-bottom: 10px; }
+    .service-card h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 6px; }
+    .service-card p { font-size: 0.78rem; color: var(--text-muted); }
+    .service-card .price { font-size: 1.1rem; font-weight: 800; color: var(--accent); margin-top: 6px; }
+
+    /* ─── TICKET INFO ─── */
+    .ticket-info {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 32px;
+    }
+
+    .ticket-info h3 { font-size: 1.1rem; margin-bottom: 20px; }
+
+    .ticket-info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .ticket-info-block h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+    .ticket-info-block p, .ticket-info-block li {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    .ticket-info-block ul { list-style: none; }
+    .ticket-info-block ul li::before { content: '•  '; color: var(--accent); }
+
+    /* ─── CONTACT ─── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      align-items: start;
+    }
+
+    .contact-info-block {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px;
+      margin-bottom: 20px;
+    }
+
+    .contact-info-block h3 { font-size: 1rem; margin-bottom: 18px; }
+
+    .contact-item {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 16px;
+      align-items: flex-start;
+    }
+
+    .contact-item .ico {
+      font-size: 1.3rem;
+      color: var(--accent);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .contact-item h4 { font-size: 0.85rem; font-weight: 700; margin-bottom: 3px; }
+    .contact-item p  { font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; }
+
+    .social-row { display: flex; gap: 12px; margin-top: 6px; }
+
+    .social-btn {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: var(--card2);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      text-decoration: none;
+    }
+
+    .social-btn:hover { background: var(--purple); }
+
+    /* ─── FORM ─── */
+    .form-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 32px;
+    }
+
+    .form-card h3 { font-size: 1.1rem; margin-bottom: 24px; }
+
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: 0.82rem; margin-bottom: 6px; color: var(--text-muted); }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      background: var(--card2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      color: #fff;
+      font-size: 0.88rem;
+      outline: none;
+      transition: border-color 0.2s;
+      font-family: inherit;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--accent); }
+
+    .form-group textarea { height: 100px; resize: vertical; }
+
+    .form-group select option { background: var(--card2); }
+
+    /* ─── MAP PLACEHOLDER ─── */
+    .map-placeholder {
+      background: var(--card2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 60px 40px;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .map-placeholder .map-icon { font-size: 3rem; margin-bottom: 16px; color: var(--accent); }
+    .map-placeholder p { color: var(--text-muted); font-size: 0.9rem; }
+    .map-placeholder h4 { font-size: 1rem; margin-bottom: 8px; }
+
+    /* ─── GALLERY ─── */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .gallery-item {
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+      aspect-ratio: 1;
+      background: var(--card2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      transition: transform 0.2s;
+    }
+
+    .gallery-item:hover { transform: scale(1.03); }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+
+    .gallery-item.wide { grid-column: span 2; aspect-ratio: 2/1; }
+    .gallery-item.tall { grid-row: span 2; aspect-ratio: 1/2; }
+
+    .gallery-item.g1  { background: linear-gradient(135deg, #4a0080, #000); }
+    .gallery-item.g2  { background: linear-gradient(135deg, #003060, #000); }
+    .gallery-item.g3  { background: linear-gradient(135deg, #006030, #000); }
+    .gallery-item.g4  { background: linear-gradient(135deg, #600030, #000); }
+    .gallery-item.g5  { background: linear-gradient(135deg, #603000, #000); }
+    .gallery-item.g6  { background: linear-gradient(135deg, #006060, #000); }
+    .gallery-item.g7  { background: linear-gradient(135deg, #300060, #000); }
+    .gallery-item.g8  { background: linear-gradient(135deg, #003030, #000); }
+    .gallery-item.g9  { background: linear-gradient(135deg, #600060, #000); }
+    .gallery-item.g10 { background: linear-gradient(135deg, #304000, #000); }
+    .gallery-item.g11 { background: linear-gradient(135deg, #004040, #000); }
+    .gallery-item.g12 { background: linear-gradient(135deg, #402000, #000); }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(124,0,212,0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.2s;
+      font-size: 1.5rem;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 24px 40px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    footer a { color: var(--accent); text-decoration: none; }
+
+    /* ─── PAGE HEADER ─── */
+    .page-header {
+      background: linear-gradient(135deg, #1a0040 0%, #3d0080 100%);
+      text-align: center;
+      padding: 60px 40px 50px;
+    }
+
+    .page-header h1 { font-size: 2.2rem; font-weight: 800; margin-bottom: 12px; }
+    .page-header p { color: var(--text-muted); max-width: 600px; margin: 0 auto; font-size: 0.95rem; }
+
+    /* ─── UTILITY ─── */
+    .text-center { text-align: center; }
+    .mt-20 { margin-top: 20px; }
+    .mt-40 { margin-top: 40px; }
+    .w-full { width: 100%; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      nav { padding: 0 16px; }
+      .nav-links { display: none; }
+      .hero h1 { font-size: 1.8rem; }
+      section { padding: 40px 20px; }
+      .features-row .inner,
+      .cards-grid,
+      .price-grid,
+      .services-grid,
+      .gallery-grid { grid-template-columns: 1fr; }
+      .contact-grid,
+      .offers-grid,
+      .info-grid,
+      .ticket-info-grid { grid-template-columns: 1fr; }
+      .gallery-item.wide,
+      .gallery-item.tall { grid-column: span 1; grid-row: span 1; aspect-ratio: 1; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ───────────────────── NAVBAR ───────────────────── -->
+<nav>
+ <div class="nav-logo" onclick="showPage('home')">
+    <img src="../image/Untitled-4.png" alt="FanPark Logo" style="height: 90px;">
+</div>
+  <ul class="nav-links">
+    <li><a onclick="showPage('home')"       id="tab-home">Acasă</a></li>
+    <li><a onclick="showPage('attractions')"id="tab-attractions">Atracții</a></li>
+    <li><a onclick="showPage('prices')"     id="tab-prices">Prețuri</a></li>
+    <li><a onclick="showPage('gallery')"    id="tab-gallery">Galerie</a></li>
+    <li><a onclick="showPage('contact')"    id="tab-contact">Contact</a></li>
+  </ul>
+  <button class="nav-btn" onclick="showPage('prices')">Cumpără Bilete</button>
+</nav>
+
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE 1 — ACASĂ (HOME)
+═══════════════════════════════════════════════════ -->
+ 
+<div class="page active" id="page-home">
+
+  <!-- Hero -->
+  <div class="hero">
+    <!-- Video -->
+    <video autoplay muted loop playsinline id="heroVideo" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
+      <source src="../video/Timeline 2.mp4" type="video/mp4">
+    </video>
+    
+    <!-- Strat întunecat -->
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); z-index: 1;"></div>
+    
+    <!-- Text -->
+    <div class="hero-content" style="position: relative; z-index: 2;">
+      <h1>FanPark-Cahul</h1>
+      <p>Distracție pentru toată familia!</p>
+      <button class="btn btn-lg" onclick="showPage('attractions')">Descoperă Atracțiile</button>
+    </div>
+    
+    <!-- BUTON SUNET -->
+    <!-- BUTON SUNET -->
+<button onclick="toggleSound()" id="soundBtn" style="position: absolute; top: 630px; right: 20px; z-index: 10; background: rgb(255, 255, 255); border: 1px solid #fff; border-radius: 50%; width: 60px; height: 60px; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0;">
+  <img src="../image/caine-dancing.gif" alt="Sound" id="soundIcon" style="width: 55px; height: 55px; border-radius: 50%; background: transparent; border: none;">
+</button>
+  </div>
+
+  <!-- Feature cards -->
+  <div class="features-row">
+    <div class="inner">
+      <div class="feature-card">
+        <span class="icon"><a href="https://youtu.be/I9jh84dADfo?si=Q4-XjH7TaD73JgoD" title="YouTube" target="_blank">ヾ(≧▽≦*)o</a></span>
+        <h3>Atracție de Top</h3>
+        <p>Cea mai tare atracție din regiune, premiată internațional pentru experiențele de neuitat.</p>
+      </div>
+      <div class="feature-card">
+        <span class="icon"><a href="https://youtu.be/8o12Z2ejpBc?si=QDcHOte8ge4t_CYV" title="Instagram" target="_blank">O(∩_∩)O</a></span>
+        <h3>Spectacole Live</h3>
+        <p>Artiști talentați, show-uri spectaculoase și momente magice în fiecare weekend.</p>
+      </div>
+      <div class="feature-card">
+        <span class="icon"><a href="https://youtu.be/peQ6IftgWkg?si=5D27l6Cmpj3nBreG" title="YouTube" target="_blank">(≧∇≦)ﾉ</a></span>
+        <h3>Locul Vesel</h3>
+        <p>Un spațiu dedicat bucuriei, râsului și amintirilor de neuitat pentru copii și adulți.mai ales TONG TONG</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Atracții Populare -->
+  <section>
+    <div class="section-header">
+      <h2>Atracții Populare</h2>
+      <p>Descoperă cele mai îndrăgite atracții ale parcului nostru</p>
+    </div>
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-img roller">
+          <img src="../image/coroler.webp" alt="Montagne Ruse" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+        <div class="card-body">
+          <h3>Camera de Distracție Nr 1</h3>
+          <p>Simte Veselia in camera cu diferite cintraste de culori</p>
+          <div class="stars">★★★★★</div>
+          <button class="btn" onclick="showPage('attractions')">Descoperă</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-img ferris">
+          <img src="../image/pomni room.webp" alt="Roata Panoramică" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+        <div class="card-body">
+          <h3>Camera de Distracție Nr 2</h3>
+          <p>O priveliște de neuitat asupra orașului Cahul de la 40 de metri înălțime.</p>
+          <div class="stars">★★★★★</div>
+          <button class="btn" onclick="showPage('attractions')">Descoperă</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-img carousel">
+          <img src="../image/pomni3.webp" alt="Carusel Magic" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+        <div class="card-body">
+          <h3>Intra in Circ</h3>
+          <p>Distracție clasică pentru cei mici și mari sale mare de circ</p>
+          <div class="stars">★★★★☆</div>
+          <button class="btn" onclick="showPage('attractions')">Descoperă</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-banner">
+    <h2>Pregătiți pentru aventură?</h2>
+    <p>Cumpărați biletele online și economisiți 20% față de prețul la casă. Ofertă limitată!</p>
+    <button class="btn btn-lg btn-gold" onclick="showPage('prices')">Cumpără Bilete Online</button>
+  </div>
+
+  <footer>
+    <img src="../image/Untitled-1.png" alt="FanPark Cahul" class="footer-logo" width="20" height="auto">
+    <span>© 2025 FanPark Cahul. Toate drepturile rezervate.</span>
+  </footer>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE 2 — ATRACȚIILE NOASTRE
+═══════════════════════════════════════════════════ -->
+<div class="page" id="page-attractions">
+
+  <div class="page-header">
+    <h1>Atracțiile Noastre</h1>
+    <p>Descoperă gama completă de atracții și aventuri care vă așteaptă la FanPark Cahul. Ceva pentru fiecare vârstă și preferință!</p>
+  </div>
+
+  <section>
+    <!-- Filter tabs -->
+    <div class="tabs">
+      <button class="tab active">Toți</button>
+      <button class="tab" onclick="window.open('https://youtu.be/JD6CdLjlxbw?si=BJkR9iBshuubpSWN','_blank')">Adrenalină</button>
+      <button class="tab" onclick="window.open('https://youtu.be/LhJ6PR7d3bM?si=aGWj9IRyuJ_xVqgM','_blank')">Familie</button>
+      <button class="tab" onclick="window.open('https://youtu.be/Lu__kwuydDs?si=Oskv_s4jizh71iEX','_blank')">Copii</button>
+      <button class="tab" onclick="window.open('https://youtu.be/ELJCjWQ86vA?si=-h-1n8HXyA2TRSmS','_blank')">Spectacole</button>
+    </div>
+
+    <!-- Cards grid -->
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-img roller">
+       <img src="../image/pomni 2.webp" alt="Montagne Ruse" style="width: 600px; height: 400px;">
+       
+        </div>
+        <div class="card-body">
+          <h3>Camera  lunga a circului</h3>
+          <p>Camera de distracție cu o lungime de 100 de metri, unde poți explora diferite zone de joc.</p>
+          <div class="stars">★★★★★ (4.9)</div>
+          <button class="btn">Descoperă</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-img ferris">
+           <img src="../image/pomni.webp" alt="Montagne Ruse" style="width: 600px; height: 400px;">
+         
+        </div>
+        <div class="card-body">
+          <h3>Harta circului</h3> 
+          <p>locul unde pot toti copii sa se joace</p>
+          <div class="stars">★★★★★ (4.8)</div>
+          <button class="btn">Descoperă</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-img carousel">
+           <img src="../image/ian-romie-ona-x6QdZQkuroI-unsplash.jpg" alt="Montagne Ruse" style="width: 600px; height: 400px;">
+          
+        </div>
+        <div class="card-body">
+          <h3>Gorci americane</h3>
+          <p>viteza si adrenalina in scurt timp cu emoti de neuitat</p>
+          <div class="stars">★★★★☆ (4.6)</div>
+          <button class="btn">Descoperă</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-img swing">
+         <img src="../image/iryna-bushuieva-cg-2kLe9auk-unsplash.jpg" alt="Montagne Ruse" style="width: 600px; height: 400px;">
+       
+        </div>
+        <div class="card-body">
+          <h3>Roata</h3>
+          <p>Simte senzația de zbor la 25 de metri înălțime pe cel mai spectaculoasa </p>
+          <div class="stars">★★★★★ (4.7)</div>
+          <button class="btn">Descoperă</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-img theater">
+          <img src="../image/istrfry-marcus-pKAl3VuPimk-unsplash.jpg"lt="Montagne Ruse" style="width: 600px; height: 400px;">
+          
+        </div>
+        <div class="card-body">
+          <h3>Cosmo</h3>
+          <p>Simte viteza vintului într-o experiență inedită.</p>
+          <div class="stars">★★★★★ (5.0)</div>
+          <button class="btn">Descoperă</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-img kidzone">
+        <img src="../image/itai-aarons-PeY2eePim3Q-unsplash.jpg "alt="Montagne Ruse" style="width: 600px; height: 400px;">
+      
+        </div>
+        <div class="card-body">
+          <h3>Viteza lungă</h3>
+          <p>Nu va ajunge timpul să te bucuri de tot parcursul drumului, cu această atracție vei simte nu mai mult de 10 minute de bucurie.</p>
+          <div class="stars">★★★★☆ (4.5)</div>
+          <button class="btn">Descoperă</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Info box -->
+    <div class="info-box">
+      <h3>👀 Informații Importante</h3>
+      <div class="info-grid">
+        <div class="info-item">
+          <span class="ico">📐</span>
+          <div>
+            <strong>Restricții de Înălțime</strong><br>
+            Unele atracții necesită înălțime minimă de 120 cm. Verificați înainte de a achiziționa bilete.
+          </div>
+        </div>
+        <div class="info-item">
+          <span class="ico">💔</span>
+          <div>
+            <strong>Condiții Medicale</strong><br>
+            Persoanele cu afecțiuni cardiace sau gravide nu pot accesa atracțiile cu adrenalină ridicată.
+          </div>
+        </div>
+        <div class="info-item">
+          <span class="ico">⌚</span>
+          <div>
+            <strong>Program de Funcționare</strong><br>
+            Luni–Vineri: 12:00–20:00 &nbsp;|&nbsp; Weekend: 8:00–23:00
+          </div>
+        </div>
+        <div class="info-item">
+          <span class="ico">🎫</span>
+          <div>
+            <strong>Acces Nelimitat</strong><br>
+            Cu biletul de zi aveți acces nelimitat la toate atracțiile fără costuri suplimentare.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <img src="../image/Untitled-1.png" alt="FanPark Cahul" class="footer-logo" width="20" height="auto">  Cahul &nbsp;|&nbsp; Aventură și Distracție &nbsp;&nbsp;
+    <span>© 2025 FanPark Cahul. Toate drepturile rezervate.</span>
+  </footer>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE 3 — PREȚURI ȘI BILETE
+═══════════════════════════════════════════════════ -->
+<div class="page" id="page-prices">
+
+  <div class="page-header">
+    <h1>Prețuri și Bilete</h1>
+    <p>Alegați pachetul perfect pentru aventura dumneavoastră. Cumpărați online și economisiți până la 20%!</p>
+  </div>
+
+  <section>
+    <!-- Price cards -->
+    <div class="price-grid">
+      <div class="price-card">
+        <div class="price-icon">🧑</div>
+        <div class="price-title">Bilet Adult</div>
+        <div class="price-sub">Vârstă: 18+ ani</div>
+        <div class="price-amount">150 <span>LEI</span></div>
+        <div class="price-per">pe persoană / zi</div>
+        <ul class="price-features">
+          <li>Acces la toate atracțiile</li>
+          <li>Spectacole Live incluse</li>
+          <li>Parcare gratuită</li>
+          <li>Reducere 10% la restaurante</li>
+          <li>1 poză profesionistă</li>
+        </ul>
+        <button class="btn w-full">Cumpără Acum</button>
+      </div>
+
+      <div class="price-card featured">
+        <div class="price-badge">⭐ Cel Mai Popular</div>
+        <div class="price-icon">👦</div>
+        <div class="price-title">Bilet Copii</div>
+        <div class="price-sub">Vârstă: 4–12 ani</div>
+        <div class="price-amount">100 <span>LEI</span></div>
+        <div class="price-per">pe persoană / zi</div>
+        <ul class="price-features">
+          <li>Acces la toate atracțiile pentru copii</li>
+          <li>Zona Kiddo inclusă</li>
+          <li>Meniu special copii</li>
+          <li>Cadou surpriză la intrare</li>
+          <li>Animator dedicat</li>
+          <li>Pic-Nic gratuit</li>
+        </ul>
+        <button class="btn btn-gold w-full">Cumpără Acum</button>
+      </div>
+
+      <div class="price-card">
+        <div class="price-icon">👨‍👩‍👧‍👦</div>
+        <div class="price-title">Bilet Familie (2+2)</div>
+        <div class="price-sub">2 adulți + 2 copii</div>
+        <div class="price-amount">400 <span>LEI</span></div>
+        <div class="price-per">pentru familie / zi</div>
+        <ul class="price-features">
+          <li>2 adulți + 2 copii</li>
+          <li>Acces la toate atracțiile</li>
+          <li>Masă la restaurant inclusă</li>
+          <li>Ședință foto familie</li>
+          <li>Fast Pass prioritar</li>
+        </ul>
+        <button class="btn w-full">Cumpără Acum</button>
+      </div>
+    </div>
+
+    <!-- Special offers -->
+    <div class="section-header">
+      <h2>🎁 Oferte Speciale</h2>
+    </div>
+    <div class="offers-grid">
+      <div class="offer-card">
+        <div class="offer-icon">📅</div>
+        <div>
+          <h3>Reducere Săptămânală</h3>
+          <p>Luni–Joi: 40% reducere la toate biletele față de prețul standard de weekend. Nu rata oferta!</p>
+        </div>
+      </div>
+      <div class="offer-card">
+        <div class="offer-icon">🎂</div>
+        <div>
+          <h3>Zile de Naștere</h3>
+          <p>Copiii care aniversează în ziua vizitei intră <strong>GRATUIT!</strong> Aduce CI sau certificatul de naștere.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Services -->
+    <div class="section-header">
+      <h2>Servicii și Extra</h2>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="ico">⚡</div>
+        <h4>Fast Pass</h4>
+        <p>Sari peste cozi la orice atracție</p>
+        <div class="price">50 LEI</div>
+      </div>
+      <div class="service-card">
+        <div class="ico">📸</div>
+        <h4>Fotografie Profesională</h4>
+        <p>Sesiune foto cu fotograful parcului</p>
+        <div class="price">30 LEI</div>
+      </div>
+      <div class="service-card">
+        <div class="ico">🍽️</div>
+        <h4>Meniu Restaurant</h4>
+        <p>Meniu complet inclus la restaurant</p>
+        <div class="price">45 LEI</div>
+      </div>
+      <div class="service-card">
+        <div class="ico">🎒</div>
+        <h4>Seif/Locker</h4>
+        <p>Depozitare securizată a bagajelor</p>
+        <div class="price">15 LEI</div>
+      </div>
+    </div>
+
+    <!-- Ticket info -->
+    <div class="ticket-info">
+      <h3>📋 Informații Despre Bilete</h3>
+      <div class="ticket-info-grid">
+        <div class="ticket-info-block">
+          <h4>🎫 Bilete Digitale</h4>
+          <p>Cumpărați online și primiți biletul pe email. Prezentați QR code-ul la intrare. Funcționează fără internet la momentul scanării.</p>
+        </div>
+        <div class="ticket-info-block">
+          <h4>💳 Metode de Plată</h4>
+          <ul>
+            <li>Card bancar (Visa/Mastercard)</li>
+            <li>Numerar la casă</li>
+            <li>Vouchere cadou FanPark</li>
+          </ul>
+        </div>
+        <div class="ticket-info-block">
+          <h4>↩️ Politica de Rambursare</h4>
+          <p>Rambursare 100% dacă anulați cu 48h înainte. Rambursare 50% cu 24h înainte. Nu se returnează în ziua evenimentului.</p>
+        </div>
+        <div class="ticket-info-block">
+          <h4>✅ Valabilitate</h4>
+          <ul>
+            <li>Bilet zi: valid 1 zi calendaristică</li>
+            <li>Abonament: 30 de zile de la activare</li>
+            <li>Vouchere: 12 luni de la emitere</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <img src="../image/Untitled-1.png" alt="FanPark Cahul" class="footer-logo" width="20" height="auto">  Cahul &nbsp;|&nbsp; Aventură și Distracție &nbsp;&nbsp;
+    <span>© 2025 FanPark Cahul. Toate drepturile rezervate.</span>
+  </footer>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE 4 — GALERIE FOTO
+═══════════════════════════════════════════════════ -->
+<div class="page" id="page-gallery">
+
+  <div class="page-header">
+    <h1>Galerie Foto</h1>
+    <p>Momente magice și amintiri de neuitat surprinse la FanPark Cahul</p>
+  </div>
+
+  <section>
+    <!-- Filter tabs -->
+     <div class="tabs">
+      <button class="tab active">Toți</button>
+      <button class="tab" onclick="window.open('https://youtu.be/XxmjUZOTaTI?si=_LysyvZY4iMfa2ER','_blank')">Adrenalină</button>
+      <button class="tab" onclick="window.open('https://youtu.be/j8BhNF4qTLs?si=Gx-s7PtJjv2M36En','_blank')">Familie</button>
+      <button class="tab" onclick="window.open('https://tenor.com/ru/view/bocchi-bocchi-the-rock-hitori-gotoh-ashita-no-joe-husk-gif-13097109864427045880','_blank')">Copii</button>
+      <button class="tab" onclick="window.open('https://youtu.be/TMkT92EuzEM?si=TyNmG_t6d1EmggHs','_blank')">Spectacole</button>
+    </div>
+
+    <!-- Gallery grid -->
+    <div class="gallery-grid">
+      <div class="gallery-item g1 wide">
+        <img src="../image/coroler.webp" alt="Montagne Ruse" style="width: 600px; height: 400px;">
+         
+        <div class="gallery-overlay"> <img src="../image/mike true.png" alt="vazovschi" style="width: 120px; height: 150px;"> </div>
+      </div>
+      <div class="gallery-item g2">
+        
+        <img src="../image/fun park.avif" alt="Montagne Ruse" style="width: 600px; height: 400px;">
+        <div class="gallery-overlay"><img src="../image/mike true.png" alt="vazovschi" style="width: 120px; height: 150px;"></div>
+      </div>
+      <div class="gallery-item g3">
+        
+        <img src="../image/ian-romie-ona-x6QdZQkuroI-unsplash.jpg" alt="Montagne Ruse" style="width: 600px; height: 400px;">
+        <div class="gallery-overlay"><img src="../image/mike true.png" alt="vazovschi" style="width: 120px; height: 150px;"></div>
+      </div>
+      <div class="gallery-item g4">
+        
+        <img src="../image/iryna-bushuieva-cg-2kLe9auk-unsplash.jpg" alt="Montagne Ruse" style="width: 600px; height: 400px;">     
+        <div class="gallery-overlay"><img src="../image/mike true.png" alt="vazovschi" style="width: 120px; height: 150px;"></div>
+      </div>
+      <div class="gallery-item g5">
+        
+        <img src="../image/istrfry-marcus-pKAl3VuPimk-unsplash.jpg" alt="Montagne Ruse" style="width: 600px; height: 400px;">
+        <div class="gallery-overlay"><img src="../image/mike true.png" alt="vazovschi" style="width: 120px; height: 150px;"></div>
+      </div>
+      <div class="gallery-item g6 wide">
+      
+        <img src="../image/pomni room.webp" alt="Montagne Ruse" style="width: 600px; height: 400px;">
+        <div class="gallery-overlay"><img src="../image/mike true.png" alt="vazovschi" style="width: 120px; height: 150px;"></div>
+      </div>
+      <div class="gallery-item g7">
+        
+          <img src="../image/itai-aarons-THcBzXzG2tA-unsplash.jpg" alt="Montagne Ruse" style="width: 600px; height: 400px;">
+        <div class="gallery-overlay"><img src="../image/mike true.png" alt="vazovschi" style="width: 120px; height: 150px;"></div>
+      </div>
+      <div class="gallery-item g8">
+        
+        <img src="../image/jason-leung-wHd2E6NUF48-unsplash.jpg" alt="Montagne Ruse" style="width: 600px; height: 400px;">
+        <div class="gallery-overlay"><img src="../image/mike true.png" alt="vazovschi" style="width: 120px; height: 150px;"></div>
+      </div>
+      <div class="gallery-item g9">
+       
+        <img src="../image/lawrson-pinson-XBsBdmb7Q-c-unsplash.jpg" alt="Montagne Ruse" style="width: 600px; height: 400px;">
+        <div class="gallery-overlay"><img src="../image/mike true.png" alt="vazovschi" style="width: 120px; height: 150px;"></div>
+      </div>
+      <div class="gallery-item g10">
+        
+        <img src="../image/merve-bardi-Sg_-U4KkA3o-unsplash.jpg" alt="Montagne Ruse" style="width: 600px; height: 400px;">
+        <div class="gallery-overlay"><img src="../image/mike true.png" alt="vazovschi" style="width: 120px; height: 150px;"></div>
+      </div>
+      <div class="gallery-item g11">
+        
+        <img src="../image/perry-merrity-ii-IEuHjlWmJo0-unsplash.jpg" alt="Montagne Ruse" style="width: 600px; height: 400px;">
+        <div class="gallery-overlay"><img src="../image/mike true.png" alt="vazovschi" style="width: 120px; height: 150px;"></div>
+      </div>
+      <div class="gallery-item g12">
+        
+        <img src="../image/sally-k-Oc-gVHId6lo-unsplash.jpg" alt="Montagne Ruse" style="width: 600px; height: 400px;">
+        <div class="gallery-overlay"><img src="../image/mike true.png" alt="vazovschi" style="width: 120px; height: 150px;"></div>
+      </div>
+    </div>
+
+    <!-- Gallery CTA -->
+    <div class="cta-banner mt-40" style="border-radius:14px;">
+      <h2>Fii Parte din Aventură</h2>
+      <p>Vino la FanPark-Cahul și creează-ți propriile amintiri de neuitat!</p>
+      <button class="btn btn-lg btn-gold" onclick="showPage('prices')">Cumpără Bilete</button>
+    </div>
+  </section>
+
+  <footer>
+    <img src="../image/Untitled-1.png" alt="FanPark Cahul" class="footer-logo" width="20" height="auto">  Cahul &nbsp;|&nbsp; Aventură și Distracție &nbsp;&nbsp;
+    <span>© 2025 FanPark Cahul. Toate drepturile rezervate.</span>
+  </footer>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE 5 — CONTACT
+═══════════════════════════════════════════════════ -->
+<div class="page" id="page-contact">
+
+  <div class="page-header">
+    <h1>Contactează-ne</h1>
+    <p>Suntem aici pentru tine! Contactează-ne pentru orice întrebare și vom răspunde cât mai curând posibil.</p>
+  </div>
+
+  <section>
+    <div class="contact-grid">
+
+      <!-- Left: Info + Social -->
+      <div>
+        <div class="contact-info-block">
+          <h3>📋 Informații de Contact</h3>
+
+          <div class="contact-item">
+            <span class="ico">📍</span>
+            <div>
+              <h4>Adresa</h4>
+              <p>Str. Parcului nr. 1<br>Cahul, Moldova, 3901</p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <span class="ico">📞</span>
+            <div>
+              <h4>Telefon</h4>
+              <p>+373 31 123-4321<br>+40 21 123-1234<br>Support: +70 22 321-2321</p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <span class="ico">✉️</span>
+            <div>
+              <h4>Email</h4>
+              <p>info@fanparkcahul.ro<br>bilete@fanparkcahul.ro<br>support@fanparkcahul.ro</p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <span class="ico">🕐</span>
+            <div>
+              <h4>Program</h4>
+              <p>Luni–Vineri: 12:00–20:00<br>Sâmbătă–Duminică: 8:00–23:00<br>Sărbători 10:00–00:00</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-info-block">
+          <h3>🌐 Urmărește-ne pe Social Media</h3>
+          <div class="social-row">
+            <a class="social-btn" href="https://youtu.be/DH5h--w_9ZA?si=OZNdDW_u_dz9CHUQ" title="Facebook"><img src="../image/png facebook.png"    width="40" height="40"  alt="Facebook"></a>
+            <a class="social-btn" href="https://youtu.be/Ss4RNdjTZD8?si=R8bN6nEKgk1zMIzy" title="Instagram"><img src="../image/instagram-logo-instagram-icon-transparent-free-png.webp"    width="40" height="40"  alt="Instagram"></a>
+            <a class="social-btn" href="https://youtu.be/0V4TiaU06uo?si=peeGoSxe-1JgQmNu" title="TikTok"><img src="../image/titktok.png"    width="40" height="40" alt="TikTok"></a>
+            <a class="social-btn" href="https://youtu.be/7wNmD6vSlv8?si=oVGkx6XrFA-gXmk1" title="YouTube"><img src="../image/youtube-logo-png-photo-0.png"    width="60" height="50"  alt="YouTube"></a>
+          </div>
+        </div>
+      </div>
+           
+      <!-- Right: Form -->
+      <div class="form-card">
+        <h3>✉️ Transmite un Mesaj</h3>
+
+        <div class="form-group">
+          <label>Nume Complet</label>
+          <input type="text" placeholder="Numele și prenumele tău" />
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="exemplu@email.com" />
+        </div>
+        <div class="form-group">
+          <label>Telefon</label>
+          <input type="tel" placeholder="+373 000 000 000" />
+        </div>
+        <div class="form-group">
+          <label>Subiect</label>
+          <select>
+            <option value="">Selectează subiectul</option>
+            <option>Informații Bilete</option>
+            <option>Rezervări Grupuri</option>
+            <option>Aniversări și Evenimente</option>
+            <option>Reclamații</option>
+            <option>Altele</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Mesaj</label>
+          <textarea placeholder="Scrie mesajul tău aici..."></textarea>
+        </div>
+
+        <button class="btn w-full">✉️ Transmite Mesaj</button>
+      </div>
+    </div>
+
+    <!-- Map placeholder -->
+    <div class="section-header mt-40">
+      <h2> <img src="../image/google.webp" alt="gif"  width="50" height="50"> Ajungi la Noi</h2>
+    </div>
+    <div class="map-placeholder">
+      <div class="map-icon">🗺️</div>
+      <h4>Str. Parcului nr. 1, Cahul, Moldova</h4>
+      <p>Introduceți adresa în Google Maps sau Waze pentru indicații de navigare</p>
+      <br>
+      <button class="btn mt-20" ><strong><a href="https://maps.google.com" target="_blank">Deschide în Google Maps</a></strong></button>
+    </div>
+  </section>
+
+  <footer>
+    <img src="../image/Untitled-1.png" alt="FanPark Cahul" class="footer-logo" width="20" height="auto">  Cahul &nbsp;|&nbsp; Aventură și Distracție &nbsp;&nbsp;
+    <span>© 2025 FanPark Cahul. Toate drepturile rezervate.</span>
+  </footer>
+</div>
+
+
+<script>
+  function showPage(name) {
+    // Hide all pages
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    // Remove active from all tabs
+    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+
+    // Show selected
+    document.getElementById('page-' + name).classList.add('active');
+    const tab = document.getElementById('tab-' + name);
+    if (tab) tab.classList.add('active');
+
+    // Scroll to top
+    window.scrollTo(0, 0);
+  }
+
+  // Tab filter buttons (attractions & gallery) - just visual toggle
+  document.querySelectorAll('.tabs').forEach(tabGroup => {
+    tabGroup.querySelectorAll('.tab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabGroup.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+  });
+</script>
+<script>
+ function showPage(name) {
+  // Oprește sunetul video
+  const video = document.getElementById('heroVideo');
+  if (video) {
+    video.muted = true;
+    // Dacă nu mergi pe pagina Acasă, oprește video-ul
+    if (name !== 'home') {
+      video.pause();
+    }
+  }
+  
+  // Resetează butonul de sunet
+  const button = document.getElementById('soundBtn');
+  if (button) {
+    button.innerHTML = '<img src="../image/caine-dancing.gif" alt="Sound" id="soundIcon" style="width: 55px; height: 55px; border-radius: 50%;">';
+    button.style.background = 'rgba(0,0,0,0.0 )';
+  }
+  
+  // Hide all pages
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  // Remove active from all tabs
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+
+  // Show selected
+  document.getElementById('page-' + name).classList.add('active');
+  const tab = document.getElementById('tab-' + name);
+  if (tab) tab.classList.add('active');
+
+  // Dacă e pagina Acasă, pornește video-ul din nou
+  if (name === 'home' && video) {
+    video.play().catch(function(error) {
+      // Ignoră eroarea de autoplay
+    });
+  }
+
+  // Scroll to top
+  window.scrollTo(0, 0);
+}
+
+// Tab filter buttons (attractions & gallery) - just visual toggle
+document.querySelectorAll('.tabs').forEach(tabGroup => {
+  tabGroup.querySelectorAll('.tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabGroup.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+});
+
+
+// Control sunet
+function toggleSound() {
+  const video = document.getElementById('heroVideo');
+  const button = document.getElementById('soundBtn');
+  
+  if (video.muted) {
+    video.muted = false;
+    video.volume = 0.5;
+    button.innerHTML = '<span style="color: #ffffff; font-weight: bold; font-size: 1.1rem;">ON</span>';
+    button.style.background = 'rgba(0,0,0,0.0)';
+    button.style.borderColor = '#000000';
+  } else {
+    video.muted = true;
+    button.innerHTML = '<span style="color: #ffffff; font-weight: bold; font-size: 1.0rem;">OFF</span>';
+    button.style.background = 'rgba(0,0,0,0.0)';
+    button.style.borderColor = '#000000';
+  }
+}
+</script>
+</body>
+</html>
+
